@@ -398,7 +398,10 @@ def flags(
         keyring_provider not in [None, "auto"]
         and keyring_provider_implementation != keyring_provider
     ):
-        pytest.skip()
+        pytest.skip(
+            f"--keyring-provider={keyring_provider} does not apply to the "
+            f"{keyring_provider_implementation} keyring implementation"
+        )
 
     flags = []
     if keyring_provider is not None:

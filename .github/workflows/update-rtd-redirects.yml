@@ -1,13 +1,7 @@
 name: Update documentation redirects
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".readthedocs-custom-redirects.yml"
-      - ".readthedocs.yml"
-  schedule:
-    - cron: 0 0 * * MON # Run every Monday at 00:00 UTC
+  workflow_dispatch:
 
 env:
   FORCE_COLOR: "1"
@@ -22,6 +16,7 @@ concurrency:
 jobs:
   update-rtd-redirects:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     environment: RTD Deploys
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0

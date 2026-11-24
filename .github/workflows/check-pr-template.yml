@@ -1,13 +1,7 @@
 name: PR Checklist
 
 on:
-  pull_request:
-    types:
-      - opened
-      - edited
-      - reopened
-      - labeled
-      - unlabeled
+  workflow_dispatch:
 
 jobs:
   check-pr-template:
@@ -15,6 +9,7 @@ jobs:
       !contains(github.event.pull_request.labels.*.name, 'skip PR template check')
     name: Check PR template
     runs-on: ubuntu-slim
+    timeout-minutes: 10
     permissions: {}
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
